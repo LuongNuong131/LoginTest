@@ -28,17 +28,6 @@
         background: #000;
         overflow: hidden;
         position: relative;
-        cursor: none;
-      }
-
-      #cursor-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
       }
 
       .cosmic-bg {
@@ -146,12 +135,17 @@
       .container {
         position: relative;
         z-index: 10;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .hologram-ring {
         position: relative;
-        width: 600px;
-        height: 600px;
+        width: 95vw;
+        max-width: 500px;
+        height: 500px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -164,7 +158,7 @@
           transform: translateY(0px);
         }
         50% {
-          transform: translateY(-20px);
+          transform: translateY(-15px);
         }
       }
 
@@ -177,30 +171,30 @@
 
       .ring-outer {
         inset: 0;
-        border: 4px solid transparent;
+        border: 3px solid transparent;
         background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5)
           border-box;
         mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         animation: ringRotate 10s linear infinite;
-        filter: drop-shadow(0 0 30px var(--glow-secondary));
+        filter: drop-shadow(0 0 25px var(--glow-secondary));
       }
 
       .ring-middle {
-        inset: 30px;
-        border: 3px solid transparent;
+        inset: 25px;
+        border: 2px solid transparent;
         background: linear-gradient(-45deg, #3a86ff, #06ffa5, #ff006e, #8338ec)
           border-box;
         mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         animation: ringRotate 8s linear infinite reverse;
-        filter: drop-shadow(0 0 20px var(--glow-primary));
+        filter: drop-shadow(0 0 18px var(--glow-primary));
       }
 
       .ring-inner {
-        inset: 60px;
+        inset: 50px;
         border: 2px solid transparent;
         background: linear-gradient(90deg, #06ffa5, #fffb00, #ff006e, #8338ec)
           border-box;
@@ -208,11 +202,11 @@
         -webkit-mask-composite: xor;
         mask-composite: exclude;
         animation: ringRotate 6s linear infinite;
-        filter: drop-shadow(0 0 15px var(--glow-tertiary));
+        filter: drop-shadow(0 0 12px var(--glow-tertiary));
       }
 
       .ring-core {
-        inset: 90px;
+        inset: 75px;
         background: radial-gradient(
           circle,
           rgba(255, 0, 110, 0.2),
@@ -238,7 +232,7 @@
           opacity: 0.5;
         }
         50% {
-          transform: scale(1.1);
+          transform: scale(1.08);
           opacity: 1;
         }
       }
@@ -261,17 +255,18 @@
 
       @keyframes particleOrbit {
         0% {
-          transform: rotate(0deg) translateX(250px) rotate(0deg);
+          transform: rotate(0deg) translateX(210px) rotate(0deg);
         }
         100% {
-          transform: rotate(360deg) translateX(250px) rotate(-360deg);
+          transform: rotate(360deg) translateX(210px) rotate(-360deg);
         }
       }
 
       .login-panel {
         position: absolute;
-        width: 420px;
-        padding: 60px 45px;
+        width: 400px;
+        max-width: 95%;
+        padding: 50px 40px;
         background: rgba(10, 10, 30, 0.85);
         backdrop-filter: blur(30px) saturate(180%);
         border-radius: 40px;
@@ -325,7 +320,7 @@
       }
 
       .logo-symbol {
-        font-size: 4em;
+        font-size: 3.5em;
         background: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -348,7 +343,7 @@
       .login-panel h2 {
         color: #fff;
         font-family: "Orbitron", sans-serif;
-        font-size: 2.8em;
+        font-size: 2.5em;
         font-weight: 900;
         text-align: center;
         margin-bottom: 10px;
@@ -377,8 +372,8 @@
       .subtitle {
         text-align: center;
         color: #8f9bb3;
-        font-size: 0.95em;
-        margin-bottom: 40px;
+        font-size: 0.9em;
+        margin-bottom: 30px;
         font-weight: 300;
         letter-spacing: 2px;
         text-transform: uppercase;
@@ -386,16 +381,16 @@
 
       .input-wrapper {
         position: relative;
-        margin-bottom: 30px;
+        margin-bottom: 25px;
       }
 
       .input-wrapper input {
         width: 100%;
-        padding: 18px 25px 18px 60px;
+        padding: 16px 20px 16px 55px;
         background: rgba(255, 255, 255, 0.05);
         border: 2px solid rgba(255, 255, 255, 0.1);
         border-radius: 60px;
-        font-size: 1.05em;
+        font-size: 1em;
         color: #fff;
         outline: none;
         transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -453,11 +448,11 @@
 
       .icon-wrapper {
         position: absolute;
-        left: 22px;
+        left: 20px;
         top: 50%;
         transform: translateY(-50%);
         z-index: 2;
-        font-size: 1.4em;
+        font-size: 1.2em;
         transition: all 0.3s;
       }
 
@@ -477,7 +472,7 @@
 
       .cyber-button {
         width: 100%;
-        padding: 18px;
+        padding: 16px;
         background: linear-gradient(
           135deg,
           #ff006e 0%,
@@ -487,7 +482,7 @@
         background-size: 200% 200%;
         border: none;
         border-radius: 60px;
-        font-size: 1.15em;
+        font-size: 1.1em;
         font-weight: 700;
         color: #fff;
         cursor: pointer;
@@ -545,7 +540,7 @@
       .links-container {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 25px;
         padding: 0 10px;
       }
 
@@ -582,7 +577,7 @@
       .divider {
         display: flex;
         align-items: center;
-        margin: 35px 0;
+        margin: 30px 0;
         color: #8f9bb3;
         font-size: 0.85em;
         text-transform: uppercase;
@@ -725,10 +720,61 @@
         border-left: none;
         border-top: none;
       }
+
+      /* --- Responsive Design --- */
+      @media (max-width: 650px) {
+        .hologram-ring {
+          animation: none;
+          height: auto;
+          width: 90vw;
+        }
+        .ring {
+          display: none;
+        }
+        .ring-core {
+          display: block;
+          inset: -20px;
+        }
+        .login-panel {
+          padding: 40px 25px;
+        }
+        .login-panel h2 {
+          font-size: 2.2em;
+          letter-spacing: 3px;
+        }
+        .subtitle {
+          font-size: 0.85em;
+          margin-bottom: 30px;
+        }
+        .input-wrapper {
+          margin-bottom: 25px;
+        }
+        .input-wrapper input {
+          padding: 16px 20px 16px 50px;
+          font-size: 1em;
+        }
+        .icon-wrapper {
+          left: 18px;
+        }
+        .cyber-button {
+          padding: 16px;
+          font-size: 1.05em;
+        }
+        .links-container,
+        .divider {
+          margin-top: 25px;
+          margin-bottom: 25px;
+        }
+        .cyber-link {
+          font-size: 0.8em;
+        }
+        .social-grid {
+          gap: 10px;
+        }
+      }
     </style>
   </head>
   <body>
-    <canvas id="cursor-canvas"></canvas>
     <div class="cosmic-bg"></div>
     <div class="stars" id="stars"></div>
     <div class="aurora"></div>
@@ -757,7 +803,7 @@
           </div>
 
           <h2 data-text="Login">Login</h2>
-          <p class="subtitle">EchoMMO</p>
+          <p class="subtitle">Echommo</p>
 
           <form id="loginForm" autocomplete="off">
             <div class="input-wrapper">
@@ -781,7 +827,7 @@
             </div>
 
             <button type="submit" class="cyber-button" data-text="Confirm">
-              <span>Login</span>
+              <span>Confirm</span>
             </button>
           </form>
 
@@ -835,7 +881,6 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // --- DOM Element References ---
         const starsContainer = document.getElementById("stars");
         const energyContainer = document.getElementById("energyParticles");
         const panel = document.getElementById("login-panel");
@@ -845,78 +890,12 @@
         const inputs = form.querySelectorAll("input");
         const laserContainer = document.getElementById("laser-lines");
         const gridOverlay = document.getElementById("grid-overlay");
-        const canvas = document.getElementById("cursor-canvas");
-        const ctx = canvas.getContext("2d");
 
-        // --- Configuration ---
-        const STAR_COUNT = 200;
-        const ENERGY_PARTICLE_COUNT = 20;
-        const LASER_COUNT = 5;
+        const STAR_COUNT = 150;
+        const ENERGY_PARTICLE_COUNT = 15;
+        const LASER_COUNT = 4;
         const COLORS = ["#ff006e", "#8338ec", "#3a86ff", "#06ffa5", "#fffb00"];
 
-        // --- Canvas Cursor Trail (Performance Upgrade) ---
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        let mouse = { x: null, y: null };
-        let particles = [];
-
-        window.addEventListener("resize", () => {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        });
-
-        window.addEventListener("mousemove", (e) => {
-          mouse.x = e.x;
-          mouse.y = e.y;
-          for (let i = 0; i < 2; i++) {
-            particles.push(new Particle(e.x, e.y));
-          }
-        });
-
-        class Particle {
-          constructor(x, y) {
-            this.x = x;
-            this.y = y;
-            this.size = Math.random() * 2 + 1;
-            this.speedX = Math.random() * 2 - 1;
-            this.speedY = Math.random() * 2 - 1;
-            this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-            this.life = 1;
-          }
-          update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-            if (this.size > 0.1) this.size -= 0.05;
-            this.life -= 0.02;
-          }
-          draw() {
-            ctx.fillStyle = this.color;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.closePath();
-            ctx.fill();
-          }
-        }
-
-        function handleParticles() {
-          for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
-            if (particles[i].life <= 0) {
-              particles.splice(i, 1);
-              i--;
-            }
-          }
-        }
-
-        function animateCursor() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-          handleParticles();
-          requestAnimationFrame(animateCursor);
-        }
-        animateCursor();
-
-        // --- Interactive Grid (New Feature) ---
         document.addEventListener("mousemove", (e) => {
           const x = (e.clientX / window.innerWidth) * 100;
           const y = (e.clientY / window.innerHeight) * 100;
@@ -927,7 +906,6 @@
             `;
         });
 
-        // --- Dynamic Star & Particle Creation ---
         const createElements = (container, count, className, setupFn) => {
           for (let i = 0; i < count; i++) {
             const el = document.createElement("div");
@@ -968,26 +946,26 @@
           );
         });
 
-        // --- 3D Tilt Effect ---
-        hologramRing.addEventListener("mousemove", (e) => {
-          const rect = hologramRing.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          const rotateY = (x / (rect.width / 2)) * 10;
-          const rotateX = -(y / (rect.height / 2)) * 10;
-          panel.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-        });
+        if (window.matchMedia("(pointer: fine)").matches) {
+          hologramRing.addEventListener("mousemove", (e) => {
+            const rect = hologramRing.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateY = (x / (rect.width / 2)) * 8;
+            const rotateX = -(y / (rect.height / 2)) * 8;
+            panel.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+          });
 
-        hologramRing.addEventListener("mouseleave", () => {
-          panel.style.transform =
-            "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
-        });
+          hologramRing.addEventListener("mouseleave", () => {
+            panel.style.transform =
+              "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+          });
+        }
 
-        // --- Text Scramble Effect (New Feature) ---
         class TextScramble {
           constructor(el) {
             this.el = el;
-            this.chars = "!<>-_\\/[]{}—=+*^?#________";
+            this.chars = "!<>-_\\/[]{}—=+*^?#_";
             this.update = this.update.bind(this);
           }
           setText(newText) {
@@ -1038,34 +1016,31 @@
           }
         }
 
-        const scrambleElements = document.querySelectorAll("[data-text]");
-        scrambleElements.forEach((el) => {
+        document.querySelectorAll("[data-text]").forEach((el) => {
           const fx = new TextScramble(el.querySelector("span") || el);
-          const originalText = el.dataset.text;
-          el.addEventListener("mouseenter", () => {
-            fx.setText(originalText);
-          });
-          // Initial scramble
-          setTimeout(() => fx.setText(originalText), 500);
+          if (window.matchMedia("(pointer: fine)").matches) {
+            el.addEventListener("mouseenter", () =>
+              fx.setText(el.dataset.text)
+            );
+          }
+          setTimeout(() => fx.setText(el.dataset.text), 500);
         });
 
-        // --- Form Submission & Validation Glitch (Upgrade) ---
         form.addEventListener("submit", (e) => {
           e.preventDefault();
-
           let isValid = true;
           inputs.forEach((input) => {
             if (input.value.trim() === "") {
               isValid = false;
               input.classList.add("glitch-error");
-              setTimeout(() => input.classList.remove("glitch-error"), 400);
+              setTimeout(() => input.classList.remove("glitch-error"), 500);
             }
           });
 
           if (!isValid) return;
 
           button.style.background = "linear-gradient(135deg, #06ffa5, #00d4ff)";
-          button.innerHTML = "<span>✓ Granted</span>";
+          button.innerHTML = "<span>✓ GRANTED</span>";
 
           setTimeout(() => {
             button.style.background = "";
