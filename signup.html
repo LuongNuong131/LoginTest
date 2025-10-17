@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ultra Premium Sign Up [Upgraded]</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600&display=swap");
+
+      :root {
+        --glow-primary: rgba(131, 56, 236, 0.5);
+        --glow-secondary: rgba(255, 0, 110, 0.5);
+        --glow-tertiary: rgba(6, 255, 165, 0.5);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Exo 2", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #000;
+        overflow: hidden;
+        position: relative;
+        cursor: none;
+      }
+
+      #cursor-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      .cosmic-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          ellipse at bottom,
+          #1b2735 0%,
+          #090a0f 100%
+        );
+      }
+
+      .stars {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 3s infinite;
+      }
+
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+      }
+
+      .aurora {
+        position: fixed;
+        width: 200%;
+        height: 200%;
+        top: -50%;
+        left: -50%;
+        background: radial-gradient(
+            ellipse at 20% 30%,
+            rgba(255, 0, 110, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 80% 70%,
+            rgba(131, 56, 236, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            ellipse at 50% 50%,
+            rgba(58, 134, 255, 0.1) 0%,
+            transparent 50%
+          );
+        animation: aurora 20s infinite;
+        filter: blur(80px);
+      }
+
+      @keyframes aurora {
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        33% {
+          transform: translate(100px, -100px) rotate(120deg);
+        }
+        66% {
+          transform: translate(-100px, 50px) rotate(240deg);
+        }
+      }
+
+      .grid-overlay {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        animation: gridScroll 20s linear infinite;
+        transform: perspective(1000px) rotateX(60deg);
+        transition: background 0.2s ease-out;
+      }
+
+      @keyframes gridScroll {
+        from {
+          background-position-y: 0px;
+        }
+        to {
+          background-position-y: 50px;
+        }
+      }
+
+      .container {
+        position: relative;
+        z-index: 10;
+      }
+
+      .hologram-ring {
+        position: relative;
+        width: 600px;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+
+      .ring {
+        position: absolute;
+        border-radius: 50%;
+        background: transparent;
+        transition: transform 0.1s ease-out;
+      }
+
+      .ring-outer {
+        inset: 0;
+        border: 4px solid transparent;
+        background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5)
+          border-box;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: ringRotate 10s linear infinite;
+        filter: drop-shadow(0 0 30px var(--glow-secondary));
+      }
+
+      .ring-middle {
+        inset: 30px;
+        border: 3px solid transparent;
+        background: linear-gradient(-45deg, #3a86ff, #06ffa5, #ff006e, #8338ec)
+          border-box;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: ringRotate 8s linear infinite reverse;
+        filter: drop-shadow(0 0 20px var(--glow-primary));
+      }
+
+      .ring-inner {
+        inset: 60px;
+        border: 2px solid transparent;
+        background: linear-gradient(90deg, #06ffa5, #fffb00, #ff006e, #8338ec)
+          border-box;
+        mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        animation: ringRotate 6s linear infinite;
+        filter: drop-shadow(0 0 15px var(--glow-tertiary));
+      }
+
+      .ring-core {
+        inset: 90px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 0, 110, 0.2),
+          rgba(131, 56, 236, 0.1),
+          transparent
+        );
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes ringRotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      .energy-particles {
+        position: absolute;
+        inset: 0;
+      }
+
+      .energy-particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 10px var(--particle-color),
+          0 0 20px var(--particle-color);
+        animation: particleOrbit 4s linear infinite;
+      }
+
+      @keyframes particleOrbit {
+        0% {
+          transform: rotate(0deg) translateX(250px) rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg) translateX(250px) rotate(-360deg);
+        }
+      }
+
+      .login-panel {
+        position: absolute;
+        width: 420px;
+        padding: 50px 45px; /* Adjusted padding */
+        background: rgba(10, 10, 30, 0.85);
+        backdrop-filter: blur(30px) saturate(180%);
+        border-radius: 40px;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 60px var(--glow-primary);
+        animation: panelEntry 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+        transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      @keyframes panelEntry {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .hologram-glow {
+        position: absolute;
+        inset: -2px;
+        background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+        border-radius: 40px;
+        opacity: 0;
+        filter: blur(20px);
+        transition: opacity 0.5s;
+        z-index: -1;
+      }
+
+      .login-panel:hover .hologram-glow {
+        opacity: 0.3;
+        animation: glowPulse 2s infinite;
+      }
+
+      @keyframes glowPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.6;
+        }
+      }
+
+      .logo {
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .logo-symbol {
+        font-size: 3.5em; /* Adjusted size */
+        background: linear-gradient(135deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: logoShine 3s infinite;
+        background-size: 300% 300%;
+        filter: drop-shadow(0 0 20px var(--glow-secondary));
+      }
+
+      @keyframes logoShine {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .login-panel h2 {
+        color: #fff;
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.5em; /* Adjusted size */
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 5px; /* Adjusted margin */
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        background: linear-gradient(to right, #fff, #8338ec, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: titleGlow 3s infinite;
+        background-size: 200% auto;
+        text-shadow: 0 0 30px var(--glow-primary);
+        transition: all 0.2s;
+      }
+
+      @keyframes titleGlow {
+        0%,
+        100% {
+          background-position: 0% center;
+        }
+        50% {
+          background-position: 100% center;
+        }
+      }
+
+      .subtitle {
+        text-align: center;
+        color: #8f9bb3;
+        font-size: 0.9em;
+        margin-bottom: 25px; /* Adjusted margin */
+        font-weight: 300;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+
+      .input-wrapper {
+        position: relative;
+        margin-bottom: 20px;
+      } /* Adjusted margin */
+
+      .input-wrapper input {
+        width: 100%;
+        padding: 16px 25px 16px 60px; /* Adjusted padding */
+        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 60px;
+        font-size: 1em;
+        color: #fff;
+        outline: none; /* Adjusted font size */
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        font-weight: 400;
+        position: relative;
+        z-index: 1;
+      }
+
+      .input-wrapper input.glitch-error {
+        animation: glitch 0.4s;
+        border-color: rgba(255, 0, 110, 0.6);
+      }
+
+      @keyframes glitch {
+        0% {
+          transform: translate(0);
+        }
+        10% {
+          transform: translate(-2px, 2px);
+        }
+        20% {
+          transform: translate(2px, -2px);
+        }
+        30% {
+          transform: translate(-2px, -2px);
+        }
+        40% {
+          transform: translate(2px, 2px);
+        }
+        50% {
+          transform: translate(0);
+        }
+        80% {
+          text-shadow: 2px 2px #ff006e, -2px -2px #06ffa5;
+        }
+        100% {
+          text-shadow: none;
+        }
+      }
+
+      .input-wrapper input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        text-transform: uppercase;
+        font-size: 0.85em;
+        letter-spacing: 1px;
+      }
+
+      .input-wrapper input:focus {
+        border-color: rgba(131, 56, 236, 0.6);
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(131, 56, 236, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      }
+
+      .icon-wrapper {
+        position: absolute;
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        font-size: 1.4em;
+        transition: all 0.3s;
+      }
+
+      .input-wrapper input:focus ~ .icon-wrapper {
+        animation: iconBounce 0.6s;
+      }
+
+      @keyframes iconBounce {
+        0%,
+        100% {
+          transform: translateY(-50%) scale(1);
+        }
+        50% {
+          transform: translateY(-50%) scale(1.3) rotate(10deg);
+        }
+      }
+
+      .cyber-button {
+        width: 100%;
+        padding: 16px; /* Adjusted padding */
+        background: linear-gradient(
+          135deg,
+          #ff006e 0%,
+          #8338ec 50%,
+          #3a86ff 100%
+        );
+        background-size: 200% 200%;
+        border: none;
+        border-radius: 60px;
+        font-size: 1.1em;
+        font-weight: 700;
+        color: #fff;
+        cursor: pointer; /* Adjusted font size */
+        position: relative;
+        overflow: hidden;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-family: "Orbitron", sans-serif;
+        transition: all 0.4s;
+        box-shadow: 0 15px 40px var(--glow-primary),
+          inset 0 -2px 10px rgba(0, 0, 0, 0.3),
+          inset 0 2px 10px rgba(255, 255, 255, 0.2);
+        animation: buttonGradient 3s infinite;
+      }
+
+      @keyframes buttonGradient {
+        0%,
+        100% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+      }
+
+      .cyber-button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s;
+      }
+
+      .cyber-button:hover::before {
+        transform: translateX(100%);
+      }
+
+      .cyber-button:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 50px rgba(131, 56, 236, 0.7),
+          inset 0 -2px 10px rgba(0, 0, 0, 0.3),
+          inset 0 2px 10px rgba(255, 255, 255, 0.3);
+      }
+
+      .cyber-button:active {
+        transform: translateY(-2px) scale(0.98);
+      }
+
+      .links-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 25px;
+        padding: 0 10px; /* Adjusted margin */
+      }
+
+      .cyber-link {
+        color: #8f9bb3;
+        text-decoration: none;
+        font-size: 0.9em;
+        transition: all 0.3s;
+        position: relative;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+
+      .cyber-link::before {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, #ff006e, #8338ec);
+        transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .cyber-link:hover {
+        color: #fff;
+        text-shadow: 0 0 15px var(--glow-primary);
+      }
+      .cyber-link:hover::before {
+        width: 100%;
+      }
+
+      .laser-lines {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        border-radius: 40px;
+      }
+
+      .laser-line {
+        position: absolute;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--glow-primary),
+          transparent
+        );
+        animation: laserScan 4s linear infinite;
+      }
+
+      @keyframes laserScan {
+        0% {
+          transform: translateY(-10%);
+          opacity: 0;
+        }
+        50% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(110%);
+          opacity: 0;
+        }
+      }
+
+      .corner-accent {
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border: 2px solid #8338ec;
+        opacity: 0.5;
+      }
+
+      .corner-accent.tl {
+        top: 20px;
+        left: 20px;
+        border-right: none;
+        border-bottom: none;
+      }
+      .corner-accent.tr {
+        top: 20px;
+        right: 20px;
+        border-left: none;
+        border-bottom: none;
+      }
+      .corner-accent.bl {
+        bottom: 20px;
+        left: 20px;
+        border-right: none;
+        border-top: none;
+      }
+      .corner-accent.br {
+        bottom: 20px;
+        right: 20px;
+        border-left: none;
+        border-top: none;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="cursor-canvas"></canvas>
+    <div class="cosmic-bg"></div>
+    <div class="stars" id="stars"></div>
+    <div class="aurora"></div>
+    <div class="grid-overlay" id="grid-overlay"></div>
+
+    <div class="container">
+      <div class="hologram-ring">
+        <div class="ring ring-outer"></div>
+        <div class="ring ring-middle"></div>
+        <div class="ring ring-inner"></div>
+        <div class="ring ring-core"></div>
+
+        <div class="energy-particles" id="energyParticles"></div>
+
+        <div class="login-panel" id="login-panel">
+          <div class="hologram-glow"></div>
+          <div class="laser-lines" id="laser-lines"></div>
+
+          <div class="corner-accent tl"></div>
+          <div class="corner-accent tr"></div>
+          <div class="corner-accent bl"></div>
+          <div class="corner-accent br"></div>
+
+          <div class="logo">
+            <div class="logo-symbol">◬</div>
+          </div>
+
+          <h2 data-text="Register">Register</h2>
+          <p class="subtitle">Identity Protocol</p>
+
+          <form id="signupForm" autocomplete="off" novalidate>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                id="username"
+                placeholder="Username"
+                required
+              />
+              <div class="icon-wrapper">⚡</div>
+            </div>
+
+            <div class="input-wrapper">
+              <input
+                type="email"
+                id="email"
+                placeholder="Email Address"
+                required
+              />
+              <div class="icon-wrapper">@</div>
+            </div>
+
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+              <div class="icon-wrapper">🔐</div>
+            </div>
+
+            <div class="input-wrapper">
+              <input
+                type="password"
+                id="confirm-password"
+                placeholder="Confirm Password"
+                required
+              />
+              <div class="icon-wrapper">✔</div>
+            </div>
+
+            <button
+              type="submit"
+              class="cyber-button"
+              data-text="Create Account"
+            >
+              <span>Create Account</span>
+            </button>
+          </form>
+
+          <div class="links-container">
+            <a href="#" class="cyber-link">Terms of Service</a>
+            <a href="index.html" class="cyber-link">Login</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- DOM Element References ---
+        const starsContainer = document.getElementById("stars");
+        const energyContainer = document.getElementById("energyParticles");
+        const panel = document.getElementById("login-panel");
+        const hologramRing = document.querySelector(".hologram-ring");
+        const form = document.getElementById("signupForm");
+        const button = form.querySelector(".cyber-button");
+        const inputs = form.querySelectorAll("input");
+        const laserContainer = document.getElementById("laser-lines");
+        const gridOverlay = document.getElementById("grid-overlay");
+        const canvas = document.getElementById("cursor-canvas");
+        const ctx = canvas.getContext("2d");
+
+        // --- Configuration ---
+        const STAR_COUNT = 200;
+        const ENERGY_PARTICLE_COUNT = 20;
+        const LASER_COUNT = 5;
+        const COLORS = ["#ff006e", "#8338ec", "#3a86ff", "#06ffa5", "#fffb00"];
+
+        // --- Canvas Cursor Trail (Performance Upgrade) ---
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particles = [];
+
+        window.addEventListener("resize", () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          for (let i = 0; i < 2; i++) {
+            particles.push(new Particle(e.x, e.y));
+          }
+        });
+
+        class Particle {
+          constructor(x, y) {
+            this.x = x;
+            this.y = y;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = Math.random() * 2 - 1;
+            this.speedY = Math.random() * 2 - 1;
+            this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+            this.life = 1;
+          }
+          update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.size > 0.1) this.size -= 0.05;
+            this.life -= 0.02;
+          }
+          draw() {
+            ctx.fillStyle = this.color;
+            ctx.globalAlpha = this.life;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.fill();
+            ctx.globalAlpha = 1;
+          }
+        }
+
+        function animateCursor() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          particles.forEach((p, i) => {
+            p.update();
+            p.draw();
+            if (p.life <= 0) particles.splice(i, 1);
+          });
+          requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // --- Interactive Grid ---
+        document.addEventListener("mousemove", (e) => {
+          const x = (e.clientX / window.innerWidth) * 100;
+          const y = (e.clientY / window.innerHeight) * 100;
+          gridOverlay.style.background = `
+                radial-gradient(circle at ${x}% ${y}%, rgba(6, 255, 165, 0.15), transparent 20%),
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+            `;
+        });
+
+        // --- Dynamic Element Creation ---
+        const createElements = (container, count, className, setupFn) => {
+          for (let i = 0; i < count; i++) {
+            const el = document.createElement("div");
+            el.className = className;
+            setupFn(el, i);
+            container.appendChild(el);
+          }
+        };
+
+        createElements(starsContainer, STAR_COUNT, "star", (star) => {
+          star.style.left = `${Math.random() * 100}%`;
+          star.style.top = `${Math.random() * 100}%`;
+          star.style.width = star.style.height = `${Math.random() * 2 + 1}px`;
+          star.style.animationDelay = `${Math.random() * 3}s`;
+          star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        });
+
+        createElements(
+          energyContainer,
+          ENERGY_PARTICLE_COUNT,
+          "energy-particle",
+          (particle, i) => {
+            particle.style.setProperty(
+              "--particle-color",
+              COLORS[Math.floor(Math.random() * COLORS.length)]
+            );
+            particle.style.animationDelay = `${i * 0.2}s`;
+            particle.style.animationDuration = `${Math.random() * 2 + 3}s`;
+          }
+        );
+
+        createElements(laserContainer, LASER_COUNT, "laser-line", (laser) => {
+          laser.style.animationDelay = `${Math.random() * 4}s`;
+          laser.style.animationDuration = `${Math.random() * 2 + 3}s`;
+          laser.style.setProperty(
+            "--glow-primary",
+            COLORS[Math.floor(Math.random() * COLORS.length)]
+          );
+        });
+
+        // --- 3D Tilt Effect ---
+        hologramRing.addEventListener("mousemove", (e) => {
+          const rect = hologramRing.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          const rotateY = (x / (rect.width / 2)) * 10;
+          const rotateX = -(y / (rect.height / 2)) * 10;
+          panel.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+        });
+
+        hologramRing.addEventListener("mouseleave", () => {
+          panel.style.transform =
+            "perspective(1000px) rotateX(0) rotateY(0) scale(1)";
+        });
+
+        // --- Text Scramble Effect ---
+        class TextScramble {
+          constructor(el) {
+            this.el = el;
+            this.chars = "!<>-_\\/[]{}—=+*^?#_";
+            this.update = this.update.bind(this);
+          }
+          setText(newText) {
+            const oldText = this.el.innerText;
+            const length = Math.max(oldText.length, newText.length);
+            const promise = new Promise((resolve) => (this.resolve = resolve));
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+              const from = oldText[i] || "";
+              const to = newText[i] || "";
+              const start = Math.floor(Math.random() * 40);
+              const end = start + Math.floor(Math.random() * 40);
+              this.queue.push({ from, to, start, end });
+            }
+            cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+            return promise;
+          }
+          update() {
+            let output = "";
+            let complete = 0;
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+              let { from, to, start, end, char } = this.queue[i];
+              if (this.frame >= end) {
+                complete++;
+                output += to;
+              } else if (this.frame >= start) {
+                if (!char || Math.random() < 0.28) {
+                  char = this.randomChar();
+                  this.queue[i].char = char;
+                }
+                output += `<span class="dud">${char}</span>`;
+              } else {
+                output += from;
+              }
+            }
+            this.el.innerHTML = output;
+            if (complete === this.queue.length) {
+              this.resolve();
+            } else {
+              this.frameRequest = requestAnimationFrame(this.update);
+              this.frame++;
+            }
+          }
+          randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+          }
+        }
+
+        document.querySelectorAll("[data-text]").forEach((el) => {
+          const fx = new TextScramble(el.querySelector("span") || el);
+          el.addEventListener("mouseenter", () => fx.setText(el.dataset.text));
+          setTimeout(() => fx.setText(el.dataset.text), 500);
+        });
+
+        // --- Form Submission & Enhanced Validation ---
+        const passwordInput = document.getElementById("password");
+        const confirmPasswordInput =
+          document.getElementById("confirm-password");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          let isValid = true;
+
+          inputs.forEach((input) => {
+            if (input.value.trim() === "") {
+              isValid = false;
+              input.classList.add("glitch-error");
+              setTimeout(() => input.classList.remove("glitch-error"), 500);
+            }
+          });
+
+          if (passwordInput.value !== confirmPasswordInput.value) {
+            isValid = false;
+            confirmPasswordInput.value = "";
+            confirmPasswordInput.placeholder = "PASSWORDS DO NOT MATCH";
+            confirmPasswordInput.classList.add("glitch-error");
+            setTimeout(() => {
+              confirmPasswordInput.classList.remove("glitch-error");
+              confirmPasswordInput.placeholder = "Confirm Password";
+            }, 2000);
+          }
+
+          if (!isValid) return;
+
+          button.style.background = "linear-gradient(135deg, #06ffa5, #00d4ff)";
+          button.innerHTML = "<span>✓ CREATED</span>";
+
+          setTimeout(() => {
+            button.style.background = "";
+            button.innerHTML = `<span>${button.dataset.text}</span>`;
+          }, 3000);
+        });
+      });
+    </script>
+  </body>
+</html>
